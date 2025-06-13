@@ -1,0 +1,222 @@
+{
+  "categorias": [
+    {
+      "id": 1,
+      "nome": "Design Gráfico",
+      "descricao": "Criação de artes para cartas, tabuleiros e embalagens",
+      "icon": "Palette"
+    },
+    {
+      "id": 2,
+      "nome": "Game Design",
+      "descricao": "Desenvolvimento de mecânicas e balanceamento de jogos",
+      "icon": "Cpu"
+    },
+    {
+      "id": 3,
+      "nome": "Impressão 3D",
+      "descricao": "Produção de miniaturas e componentes personalizados",
+      "icon": "Printer"
+    },
+    {
+      "id": 4,
+      "nome": "Fabricação",
+      "descricao": "Manufatura em escala de jogos completos",
+      "icon": "Package"
+    },
+    {
+      "id": 5,
+      "nome": "Playtest",
+      "descricao": "Testes de jogabilidade e feedback de usuários",
+      "icon": "Users"
+    },
+    {
+      "id": 6,
+      "nome": "Ilustração",
+      "descricao": "Criação de ilustrações para cartas, tabuleiros e personagens",
+      "icon": "PenTool"
+    },
+    {
+      "id": 7,
+      "nome": "Redação",
+      "descricao": "Escrita de regras, histórias e textos para jogos",
+      "icon": "FileText"
+    },
+    {
+      "id": 8,
+      "nome": "Consultoria",
+      "descricao": "Orientação especializada para desenvolvimento de jogos",
+      "icon": "HelpCircle"
+    }
+  ],
+  "prestadores": [
+    {
+      "id": 1,
+      "nome": "Studio Criativo",
+      "categoria": "Design Gráfico",
+      "categoriaId": 1,
+      "avaliacao": 4.9,
+      "numAvaliacoes": 87,
+      "descricao": "Especialistas em design de cartas, tabuleiros e embalagens para jogos de tabuleiro.",
+      "imagem": "/placeholder-tvbms.png",
+      "portfolio": [
+        "/placeholder.svg?height=200&width=350&query=board+game+card+design",
+        "/placeholder.svg?height=200&width=350&query=board+game+box+design",
+        "/placeholder.svg?height=200&width=350&query=board+game+board+design"
+      ],
+      "contato": {
+        "email": "contato@studiocriativo.com",
+        "telefone": "(11) 98765-4321",
+        "site": "www.studiocriativo.com"
+      },
+      "destaque": true
+    },
+    {
+      "id": 2,
+      "nome": "3D Print Masters",
+      "categoria": "Impressão 3D",
+      "categoriaId": 3,
+      "avaliacao": 4.8,
+      "numAvaliacoes": 64,
+      "descricao": "Impressão 3D de alta qualidade para miniaturas e componentes de jogos.",
+      "imagem": "/placeholder-ewt2u.png",
+      "portfolio": [
+        "/placeholder.svg?height=200&width=350&query=3d+printed+miniatures",
+        "/placeholder.svg?height=200&width=350&query=3d+printed+game+pieces",
+        "/placeholder.svg?height=200&width=350&query=3d+printed+board+game+components"
+      ],
+      "contato": {
+        "email": "contato@3dprintmasters.com",
+        "telefone": "(21) 98765-4321",
+        "site": "www.3dprintmasters.com"
+      },
+      "destaque": true
+    },
+    {
+      "id": 3,
+      "nome": "Game Balance Experts",
+      "categoria": "Game Design",
+      "categoriaId": 2,
+      "avaliacao": 4.7,
+      "numAvaliacoes": 52,
+      "descricao": "Consultoria especializada em balanceamento e mecânicas de jogos.",
+      "imagem": "/placeholder-g44vt.png",
+      "portfolio": [
+        "/placeholder.svg?height=200&width=350&query=board+game+mechanics",
+        "/placeholder.svg?height=200&width=350&query=game+balance+chart",
+        "/placeholder.svg?height=200&width=350&query=board+game+design+document"
+      ],
+      "contato": {
+        "email": "contato@gamebalance.com",
+        "telefone": "(31) 98765-4321",
+        "site": "www.gamebalance.com"
+      },
+      "destaque": true
+    },
+    {
+      "id": 4,
+      "nome": "Manufatura Premium",
+      "categoria": "Fabricação",
+      "categoriaId": 4,
+      "avaliacao": 4.9,
+      "numAvaliacoes": 73,
+      "descricao": "Produção em escala de jogos de tabuleiro com materiais de alta qualidade.",
+      "imagem": "/placeholder-cxyj7.png",
+      "portfolio": [
+        "/placeholder.svg?height=200&width=350&query=board+game+manufacturing",
+        "/placeholder.svg?height=200&width=350&query=board+game+production+line",
+        "/placeholder.svg?height=200&width=350&query=board+game+components+manufacturing"
+      ],
+      "contato": {
+        "email": "contato@manufaturapremium.com",
+        "telefone": "(11) 98765-4321",
+        "site": "www.manufaturapremium.com"
+      },
+      "destaque": true
+    },
+    {
+      "id": 5,
+      "nome": "Ilustrações Fantásticas",
+      "categoria": "Ilustração",
+      "categoriaId": 6,
+      "avaliacao": 4.9,
+      "numAvaliacoes": 95,
+      "descricao": "Criação de ilustrações detalhadas para jogos de fantasia e ficção científica.",
+      "imagem": "/placeholder-du2ym.png",
+      "portfolio": [
+        "/placeholder.svg?height=200&width=350&query=fantasy+board+game+illustration",
+        "/placeholder.svg?height=200&width=350&query=sci+fi+board+game+art",
+        "/placeholder.svg?height=200&width=350&query=board+game+character+illustration"
+      ],
+      "contato": {
+        "email": "contato@ilustracoesfantasticas.com",
+        "telefone": "(21) 98765-4321",
+        "site": "www.ilustracoesfantasticas.com"
+      },
+      "destaque": false
+    },
+    {
+      "id": 6,
+      "nome": "Regras Claras",
+      "categoria": "Redação",
+      "categoriaId": 7,
+      "avaliacao": 4.8,
+      "numAvaliacoes": 48,
+      "descricao": "Especialistas em escrever regras claras e concisas para jogos de tabuleiro.",
+      "imagem": "/placeholder.svg?height=200&width=350&query=board+game+rulebook",
+      "portfolio": [
+        "/placeholder.svg?height=200&width=350&query=board+game+rules",
+        "/placeholder.svg?height=200&width=350&query=board+game+manual",
+        "/placeholder.svg?height=200&width=350&query=board+game+instructions"
+      ],
+      "contato": {
+        "email": "contato@regras-claras.com",
+        "telefone": "(11) 98765-4321",
+        "site": "www.regras-claras.com"
+      },
+      "destaque": false
+    },
+    {
+      "id": 7,
+      "nome": "Playtest Pro",
+      "categoria": "Playtest",
+      "categoriaId": 5,
+      "avaliacao": 4.7,
+      "numAvaliacoes": 39,
+      "descricao": "Grupo de jogadores experientes que testam e fornecem feedback detalhado sobre jogos.",
+      "imagem": "/placeholder.svg?height=200&width=350&query=board+game+playtest",
+      "portfolio": [
+        "/placeholder.svg?height=200&width=350&query=board+game+testing",
+        "/placeholder.svg?height=200&width=350&query=board+game+feedback",
+        "/placeholder.svg?height=200&width=350&query=board+game+playtest+session"
+      ],
+      "contato": {
+        "email": "contato@playtestpro.com",
+        "telefone": "(31) 98765-4321",
+        "site": "www.playtestpro.com"
+      },
+      "destaque": false
+    },
+    {
+      "id": 8,
+      "nome": "Consultoria Lúdica",
+      "categoria": "Consultoria",
+      "categoriaId": 8,
+      "avaliacao": 4.9,
+      "numAvaliacoes": 57,
+      "descricao": "Consultoria completa para desenvolvimento de jogos, desde o conceito até a produção.",
+      "imagem": "/placeholder.svg?height=200&width=350&query=board+game+consultation",
+      "portfolio": [
+        "/placeholder.svg?height=200&width=350&query=board+game+development",
+        "/placeholder.svg?height=200&width=350&query=board+game+consulting",
+        "/placeholder.svg?height=200&width=350&query=board+game+project+management"
+      ],
+      "contato": {
+        "email": "contato@consultorialudica.com",
+        "telefone": "(11) 98765-4321",
+        "site": "www.consultorialudica.com"
+      },
+      "destaque": false
+    }
+  ]
+}

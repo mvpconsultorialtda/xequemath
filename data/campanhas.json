@@ -1,0 +1,76 @@
+{
+  "campanhas": [
+    {
+      "id": 1,
+      "titulo": "Dungeons & Dragons: Aventuras Brasileiras",
+      "criador": "RPG Brasil",
+      "meta": "R$ 50.000",
+      "arrecadado": "R$ 32.450",
+      "percentual": 65,
+      "diasRestantes": 15,
+      "imagem": "/dnd-aventuras-brasileiras.png",
+      "descricao": "Uma expansão de D&D ambientada no folclore e mitologia brasileira, com novas classes, raças e aventuras.",
+      "categoria": "RPG"
+    },
+    {
+      "id": 2,
+      "titulo": "Canvas: Business Model",
+      "criador": "Felipe Carvalho",
+      "meta": "R$ 35.000",
+      "arrecadado": "R$ 28.900",
+      "percentual": 82,
+      "diasRestantes": 7,
+      "imagem": "/canvas-business-model.png",
+      "descricao": "Um jogo educativo que ensina, de forma prática e divertida, como construir um modelo de negócio usando o Canvas.",
+      "categoria": "Educativo"
+    },
+    {
+      "id": 3,
+      "titulo": "Dose Certa",
+      "criador": "Yuri Boa Sorte",
+      "meta": "R$ 25.000",
+      "arrecadado": "R$ 12.300",
+      "percentual": 49,
+      "diasRestantes": 21,
+      "imagem": "/dose-certa-nova.png",
+      "descricao": "Um jogo de decisões em que você aprende a usar medicamentos de forma consciente ao longo da vida, entendendo riscos, diagnósticos e o momento certo de buscar ajuda médica.",
+      "categoria": "Educativo"
+    },
+    {
+      "id": 4,
+      "titulo": "Bela Caçadora de Feras",
+      "criador": "Estúdio Narrativo",
+      "meta": "R$ 40.000",
+      "arrecadado": "R$ 18.750",
+      "percentual": 47,
+      "diasRestantes": 18,
+      "imagem": "/bela-cacadora-feras.png",
+      "descricao": "Baseado na história desenvolvida pelo Estúdio Narrativo, conheça agora o boardgame inspirado nessa incrível aventura.",
+      "categoria": "Aventura"
+    },
+    {
+      "id": 5,
+      "titulo": "Desafio das Calorias",
+      "criador": "Vic Bionica",
+      "meta": "R$ 30.000",
+      "arrecadado": "R$ 9.800",
+      "percentual": 33,
+      "diasRestantes": 25,
+      "imagem": "/desafio-calorias.png",
+      "descricao": "Um jogo interativo onde os jogadores usam cartas de alimentos para ganhar ou perder peso conforme seus objetivos, aprendendo sobre calorias, densidade energética e escolhas alimentares de forma divertida e educativa.",
+      "categoria": "Educativo"
+    },
+    {
+      "id": 6,
+      "titulo": "Exantor",
+      "criador": "Júlia Pedroso",
+      "meta": "R$ 20.000",
+      "arrecadado": "R$ 15.600",
+      "percentual": 78,
+      "diasRestantes": 5,
+      "imagem": "/exantor.png",
+      "descricao": "Um jogo leve que brinca com elementos clássicos do universo fantástico, trazendo diversão e surpresas a cada partida.",
+      "categoria": "Fantasia"
+    }
+  ]
+}

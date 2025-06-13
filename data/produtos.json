@@ -1,0 +1,108 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "titulo": "Conquistadores do Reino",
+      "criador": "Jogos Épicos",
+      "preco": "R$ 189,90",
+      "avaliacao": 4.8,
+      "numAvaliacoes": 124,
+      "imagem": "/placeholder-z4lao.png",
+      "descricao": "Um jogo de estratégia medieval onde os jogadores competem para expandir seus reinos e conquistar territórios.",
+      "categoria": "Estratégia",
+      "estoque": 15,
+      "lancamento": "2023-03-15"
+    },
+    {
+      "id": 2,
+      "titulo": "Exploradores do Espaço",
+      "criador": "Galáxia Games",
+      "preco": "R$ 249,90",
+      "avaliacao": 4.6,
+      "numAvaliacoes": 87,
+      "imagem": "/placeholder.svg?height=200&width=350&query=space+exploration+board+game",
+      "descricao": "Um jogo de exploração espacial onde os jogadores descobrem novos planetas e enfrentam desafios cósmicos.",
+      "categoria": "Aventura",
+      "estoque": 8,
+      "lancamento": "2023-05-20"
+    },
+    {
+      "id": 3,
+      "titulo": "Mistérios da Mansão",
+      "criador": "Enigma Jogos",
+      "preco": "R$ 159,90",
+      "avaliacao": 4.7,
+      "numAvaliacoes": 103,
+      "imagem": "/placeholder.svg?height=200&width=350&query=mystery+mansion+board+game",
+      "descricao": "Um jogo de mistério onde os jogadores investigam uma mansão assombrada e desvendam seus segredos.",
+      "categoria": "Mistério",
+      "estoque": 12,
+      "lancamento": "2023-02-10"
+    },
+    {
+      "id": 4,
+      "titulo": "Civilizações Antigas",
+      "criador": "História em Jogos",
+      "preco": "R$ 219,90",
+      "avaliacao": 4.9,
+      "numAvaliacoes": 156,
+      "imagem": "/placeholder.svg?height=200&width=350&query=ancient+civilizations+board+game",
+      "descricao": "Um jogo de construção de civilizações baseado nas grandes culturas da antiguidade.",
+      "categoria": "Estratégia",
+      "estoque": 5,
+      "lancamento": "2023-01-05"
+    },
+    {
+      "id": 5,
+      "titulo": "Batalha dos Elementos",
+      "criador": "Quatro Elementos",
+      "preco": "R$ 179,90",
+      "avaliacao": 4.5,
+      "numAvaliacoes": 92,
+      "imagem": "/placeholder.svg?height=200&width=350&query=elemental+battle+board+game",
+      "descricao": "Um jogo de cartas onde os jogadores controlam os elementos da natureza em batalhas épicas.",
+      "categoria": "Cartas",
+      "estoque": 20,
+      "lancamento": "2023-04-12"
+    },
+    {
+      "id": 6,
+      "titulo": "Piratas do Caribe",
+      "criador": "Aventuras Marítimas",
+      "preco": "R$ 199,90",
+      "avaliacao": 4.7,
+      "numAvaliacoes": 118,
+      "imagem": "/placeholder.svg?height=200&width=350&query=pirate+caribbean+board+game",
+      "descricao": "Um jogo de aventura onde os jogadores navegam pelos mares do Caribe em busca de tesouros.",
+      "categoria": "Aventura",
+      "estoque": 10,
+      "lancamento": "2023-06-01"
+    },
+    {
+      "id": 7,
+      "titulo": "Mestres da Magia",
+      "criador": "Mundo Arcano",
+      "preco": "R$ 169,90",
+      "avaliacao": 4.4,
+      "numAvaliacoes": 76,
+      "imagem": "/placeholder.svg?height=200&width=350&query=magic+wizards+board+game",
+      "descricao": "Um jogo de duelos mágicos onde os jogadores lançam feitiços e invocam criaturas místicas.",
+      "categoria": "Fantasia",
+      "estoque": 15,
+      "lancamento": "2023-03-25"
+    },
+    {
+      "id": 8,
+      "titulo": "Fazendeiros do Vale",
+      "criador": "Jogos Rurais",
+      "preco": "R$ 149,90",
+      "avaliacao": 4.8,
+      "numAvaliacoes": 135,
+      "imagem": "/placeholder.svg?height=200&width=350&query=farm+valley+board+game",
+      "descricao": "Um jogo de gestão de recursos onde os jogadores desenvolvem suas fazendas e competem no mercado.",
+      "categoria": "Família",
+      "estoque": 18,
+      "lancamento": "2023-02-28"
+    }
+  ]
+}
