@@ -1,14 +1,15 @@
-"use client"
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { useAuth } from "@/app/context/auth-context"
-import UserMenu from "@/app/components/user-menu"
-import { Bell, CastleIcon as ChessKnight } from "lucide-react"
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Bell, CastleIcon as ChessKnight } from "lucide-react";
+import { useSession, signOut } from "next-auth/react";
+import { Button } from "@/components/ui/button";
 
 export default function Navigation() {
-  const pathname = usePathname()
-  const { isAuthenticated } = useAuth()
+  const pathname = usePathname();
+  const { data: session, status } = useSession();
 
   return (
     <nav className="flex flex-col md:flex-row justify-between items-center mb-16">
@@ -20,42 +21,34 @@ export default function Navigation() {
         <div className="flex gap-6 md:gap-8">
           <Link
             href="/campanhas"
-            className={`text-white text-xl hover:underline ${pathname === "/campanhas" ? "underline" : ""}`}
-          >
+            className={`text-white text-xl hover:underline ${pathname === "/campanhas" ? "underline" : ""}`}>
             Jogos Educacionais
           </Link>
           <Link
-            href="/servicos"
-            className={`text-white text-xl hover:underline ${pathname === "/servicos" ? "underline" : ""}`}
-          >
+            href="/educadores"
+            className={`text-white text-xl hover:underline ${pathname === "/educadores" ? "underline" : ""}`}>
             Educadores
           </Link>
           <Link
             href="/assistente"
-            className={`text-white text-xl hover:underline ${pathname === "/assistente" ? "underline" : ""}`}
-          >
+            className={`text-white text-xl hover:underline ${pathname === "/assistente" ? "underline" : ""}`}>
             Assistente
           </Link>
         </div>
 
-        {isAuthenticated ? (
-          <div className="flex items-center gap-4">
-            <button className="relative bg-white/10 hover:bg-white/20 transition-colors p-2 rounded-full">
-              <Bell className="h-5 w-5 text-white" />
-              <span className="absolute -top-1 -right-1 bg-green-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-                5
-              </span>
-            </button>
-            <UserMenu />
-          </div>
-        ) : (
-          <Link href="/login" className="text-white text-xl hover:underline">
-            Login
-          </Link>
-        )}
+        <div className="flex items-center gap-4">
+          {status === "authenticated" ? (
+            <>
+              <span className="text-white text-xl">Bem-vindo, {session.user?.name}</span>
+              <Button onClick={() => signOut()} variant="secondary">Logout</Button>
+            </>
+          ) : (
+            <Link href="/login" className="text-white text-xl hover:underline">
+              Login
+            </Link>
+          )}
+        </div>
       </div>
     </nav>
-  )
+  );
 }
-
-export { Navigation }

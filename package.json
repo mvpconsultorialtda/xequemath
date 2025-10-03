@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "pnpm run build && git add . && git commit -m 'chore: build and deploy' && git push"
   },
   "dependencies": {
     "@auth/core": "latest",
