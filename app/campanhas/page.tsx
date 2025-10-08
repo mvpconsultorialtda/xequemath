@@ -2,25 +2,21 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
 import { Button } from "@/components/ui/button";
 import AdminControls from "@/app/components/admin-controls";
 import Navigation from "@/app/components/navigation";
 import {
-  Calculator,
-  BookOpen,
-  BrainCircuit,
-  Lightbulb,
   PlusCircle,
-  GraduationCap,
-  CastleIcon as ChessKnight,
   Divide,
   Sigma,
-  LineChart,
   Triangle,
-  CircleDollarSign,
 } from "lucide-react";
 
 export default function JogosPage() {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+
   const jogosEducacionais = [
     {
       id: 1,
@@ -66,28 +62,27 @@ export default function JogosPage() {
   ];
 
   const [filteredJogos, setFilteredJogos] = useState(jogosEducacionais);
-  const [activeFilter, setActiveFilter] = useState("todos");
-  const [isLoading, setIsLoading] = useState(true);
-
-  const categorias = ["todos", ...Array.from(new Set(jogosEducacionais.map((jogo) => jogo.categoria.toLowerCase())))];
-
-  const handleFilterChange = (filtro: string) => {
-    setActiveFilter(filtro);
-
-    if (filtro === "todos") {
-      setFilteredJogos(jogosEducacionais);
-    } else {
-      setFilteredJogos(jogosEducacionais.filter((jogo) => jogo.categoria.toLowerCase() === filtro));
-    }
-  };
 
   useEffect(() => {
-    setFilteredJogos(jogosEducacionais);
-    const timer = setTimeout(() => {
+    const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+    if (isLoggedIn !== 'true') {
+      router.push('/request-invitation');
+    } else {
+      setFilteredJogos(jogosEducacionais);
       setIsLoading(false);
-    }, 500);
-    return () => clearTimeout(timer);
-  }, []);
+    }
+  }, [router]);
+
+  if (isLoading) {
+    return (
+      <main className="min-h-screen bg-gradient-to-b from-blue-700 via-blue-600 to-blue-500 flex justify-center items-center">
+        <div className="flex flex-col justify-center items-center py-12 text-white">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white mb-4"></div>
+            <p className="text-xl">Verificando acesso...</p>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-blue-700 via-blue-600 to-blue-500">
@@ -100,9 +95,6 @@ export default function JogosPage() {
             Descubra e apoie jogos que transformam o aprendizado de matemática em uma experiência divertida e envolvente
             para estudantes de todas as idades.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center mb-8">
-             {/* Filter buttons */}
-          </div>
 
           <Link
             href="/campanhas/criar"
@@ -113,22 +105,26 @@ export default function JogosPage() {
           </Link>
         </div>
 
-        {isLoading ? (
-          <div className="flex justify-center items-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {filteredJogos.map((jogo) => (
-              <div
-                key={jogo.id}
-                className="bg-white/10 backdrop-blur-sm rounded-xl overflow-hidden border border-white/20 relative"
-              >
-                 {/* Game card content */}
-              </div>
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {filteredJogos.map((jogo) => (
+            <div
+              key={jogo.id}
+              className="bg-white/10 backdrop-blur-sm rounded-xl overflow-hidden border border-white/20 relative p-6 flex flex-col items-center text-center text-white"
+            >
+               <div className="mb-4">{jogo.icone}</div>
+                <h3 className="text-2xl font-serif mb-2">{jogo.titulo}</h3>
+                <p className="text-sm text-blue-200 mb-4">por {jogo.criador}</p>
+                <p className="text-sm mb-4">{jogo.descricao}</p>
+                <div className="w-full bg-blue-900/50 rounded-full h-2.5 mb-4">
+                    <div className="bg-green-500 h-2.5 rounded-full" style={{ width: `${jogo.percentual}%` }}></div>
+                </div>
+                <div className="flex justify-between w-full text-sm">
+                    <span>{jogo.arrecadado} de {jogo.meta}</span>
+                    <span>{jogo.diasRestantes} dias restantes</span>
+                </div>
+            </div>
+          ))}
+        </div>
 
         <AdminControls />
       </div>
