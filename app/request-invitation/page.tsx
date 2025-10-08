@@ -1,92 +1,58 @@
+'use client';
 
-"use client";
-
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Mail, Loader2, CheckCircle } from "lucide-react";
-import Navigation from "@/app/components/navigation"; // Importa o componente de navegação
+import GlassCard from '../components/glass-card';
+import { useState } from 'react';
 
 export default function RequestInvitationPage() {
-  const [email, setEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) {
-      setError("Por favor, insira um endereço de e-mail.");
-      return;
-    }
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      setError("Por favor, insira um e-mail válido.");
-      return;
-    }
-    setError("");
-    setIsLoading(true);
-
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    setIsLoading(false);
-    setIsSubmitted(true);
+    // Here you would typically handle the API call to a mailing list service
+    console.log(`Email submitted: ${email}`);
+    setSubmitted(true);
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-blue-700 via-blue-600 to-blue-500 text-white">
-      <div className="container mx-auto px-4 py-8">
-        <Navigation />
-
-        <div className="flex justify-center items-center" style={{ minHeight: 'calc(100vh - 200px)' }}>
-            <div className="w-full max-w-md mx-auto bg-white/10 backdrop-blur-sm rounded-xl shadow-2xl p-8 border border-white/20">
-                {isSubmitted ? (
-                <div className="text-center">
-                    <CheckCircle className="mx-auto h-16 w-16 text-green-400 mb-6" />
-                    <h1 className="text-3xl font-serif font-bold mb-3">Convite Solicitado!</h1>
-                    <p className="text-lg text-white/90">
-                    Sua solicitação de convite foi recebida com sucesso. Fique de olho no seu e-mail, nossa equipe entrará em contato em breve.
-                    </p>
-                </div>
-                ) : (
-                <>
-                    <div className="text-center mb-8">
-                    <h1 className="text-4xl font-serif font-bold">Acesso Restrito</h1>
-                    <p className="text-lg text-white/80 mt-2">
-                        Para acessar a plataforma, por favor, solicite um convite.
-                    </p>
-                    </div>
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-                        <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="seu.email@exemplo.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="pl-10 h-12 bg-white/10 text-white placeholder:text-gray-400 border-white/30 focus:border-green-400 focus:ring-green-400"
-                        disabled={isLoading}
-                        />
-                    </div>
-                    {error && <p className="text-sm text-red-400">{error}</p>}
-                    <Button 
-                        type="submit" 
-                        className="w-full h-12 bg-green-600 hover:bg-green-700 text-white text-lg font-medium rounded-full transition-all duration-300 flex items-center justify-center"
-                        disabled={isLoading}
-                    >
-                        {isLoading ? (
-                        <Loader2 className="h-6 w-6 animate-spin" />
-                        ) : (
-                        "Solicitar Convite"
-                        )}
-                    </Button>
-                    </form>
-                </>
-                )}
-            </div>
-        </div>
-      </div>
-    </main>
+    <div className="container mx-auto flex items-center justify-center min-h-[calc(100vh-200px)]">
+      <GlassCard className="max-w-xl w-full p-8 md:p-12 text-center">
+        {submitted ? (
+          <div>
+            <h2 className="font-lora text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-blue-300">
+              Obrigado!
+            </h2>
+            <p className="text-slate-300 text-lg">
+              Você está na lista! Avisaremos assim que uma vaga for liberada.
+            </p>
+          </div>
+        ) : (
+          <div>
+            <h2 className="font-lora text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-blue-300">
+              Junte-se à Revolução da Matemática
+            </h2>
+            <p className="text-slate-300 mb-8">
+              A plataforma está em beta fechado. Deixe seu e-mail abaixo para entrar na lista de espera e ser um dos primeiros a ter acesso.
+            </p>
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="seu.email@exemplo.com"
+                required
+                className="flex-grow px-4 py-3 rounded-full bg-slate-800/60 border border-slate-700 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+              />
+              <button
+                type="submit"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-full transition-colors transform hover:scale-105"
+              >
+                Entrar na Lista
+              </button>
+            </form>
+          </div>
+        )}
+      </GlassCard>
+    </div>
   );
 }

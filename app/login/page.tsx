@@ -1,92 +1,87 @@
+'use client';
 
-"use client"
-
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { loginSchema } from "@/app/schemas/login";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import GlassCard from '../components/glass-card';
+import { useState } from 'react';
 import Link from 'next/link';
 
-type FormData = z.infer<typeof loginSchema>;
-
 export default function LoginPage() {
-  const [errorMessage, setErrorMessage] = useState("");
-  const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<FormData>({
-    resolver: zodResolver(loginSchema),
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const onSubmit = (data: FormData) => {
-    // Simulate backend validation
-    if (data.email === "test@example.com" && data.password === "password") {
-      // On success, simulate a session by saving a flag in sessionStorage
-      sessionStorage.setItem('isLoggedIn', 'true');
-      // Redirect to the protected page
-      router.push("/assistente");
-    } else {
-      // On failure, show an error message
-      setErrorMessage("Email ou senha inválidos.");
-    }
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle standard login logic
+    console.log(`Logging in with: ${email}`);
+  };
+
+  const handleGoogleLogin = () => {
+    // Handle Google login logic
+    console.log('Initiating Google login');
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
-        <div className="absolute top-8 left-8">
-            <Link href="/" className="text-gray-600 dark:text-gray-300 hover:underline">
-                &larr; Voltar para a página inicial
-            </Link>
-        </div>
-      <Card className="w-full max-w-sm">
-        <CardHeader className="space-y-1 text-center">
-          <CardTitle className="text-2xl font-bold">Login</CardTitle>
-          <CardDescription>Digite seu email e senha para acessar sua conta</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="m@example.com"
-                {...register("email")}
-              />
-              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Senha</Label>
-              <Input id="password" type="password" {...register("password")} />
-              {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
-            </div>
-
-            {errorMessage && (
-              <div className="p-2 text-center text-red-700 bg-red-100 rounded-md">
-                {errorMessage}
-              </div>
-            )}
-
-            <Button type="submit" className="w-full mt-6" disabled={isSubmitting}>
-              {isSubmitting ? "Entrando..." : "Login"}
-            </Button>
-          </form>
-          <div className="mt-4 text-center text-sm">
-            Não tem uma conta?{" "}
-            <Link href="/request-invitation" className="underline">
-              Solicite um convite
-            </Link>
+    <div className="container mx-auto flex items-center justify-center min-h-[calc(100vh-200px)]">
+      <GlassCard className="max-w-md w-full p-8">
+        <h2 className="font-lora text-3xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-blue-300">
+          Acesse sua Conta
+        </h2>
+        <form onSubmit={handleLogin} className="space-y-6">
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">Email</label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full px-4 py-3 rounded-full bg-slate-800/60 border border-slate-700 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+            />
           </div>
-        </CardContent>
-      </Card>
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-slate-300 mb-2">Senha</label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full px-4 py-3 rounded-full bg-slate-800/60 border border-slate-700 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+            />
+          </div>
+           <div className="text-right">
+              <Link href="/forgot-password">
+                <span className="text-sm text-slate-400 hover:text-blue-400 transition-colors cursor-pointer">
+                  Esqueceu sua senha?
+                </span>
+              </Link>
+            </div>
+          <div>
+            <button
+              type="submit"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-full transition-colors transform hover:scale-105"
+            >
+              Login
+            </button>
+          </div>
+        </form>
+        <div className="relative my-8">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-slate-700" />
+          </div>
+          <div className="relative flex justify-center text-sm">
+            <span className="bg-slate-800/80 px-2 text-slate-400 backdrop-blur-sm">OU</span>
+          </div>
+        </div>
+        <div>
+          <button
+            onClick={handleGoogleLogin}
+            className="w-full bg-slate-700/50 hover:bg-slate-700 text-white font-medium py-3 rounded-full transition-colors flex items-center justify-center gap-3"
+          >
+            {/* SVG for Google Icon would go here */}
+            <span>Login com Google</span>
+          </button>
+        </div>
+      </GlassCard>
     </div>
   );
 }

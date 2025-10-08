@@ -1,25 +1,58 @@
+import GlassCard from '../components/glass-card';
+import { BarChart3, Users, ClipboardCopy } from 'lucide-react';
+import Link from 'next/link';
 
-import { Button } from "@/components/ui/button";
-import Navigation from "@/app/components/navigation";
-import Link from "next/link";
+const educatorFeatures = [
+  {
+    icon: <BarChart3 className="w-10 h-10 mb-4 text-green-400" />,
+    title: 'Acompanhamento em Tempo Real',
+    description: 'Monitore o progresso dos alunos, identifique dificuldades e celebre conquistas com dashboards intuitivos.',
+  },
+  {
+    icon: <Users className="w-10 h-10 mb-4 text-orange-400" />,
+    title: 'Gestão de Turmas Simplificada',
+    description: 'Crie turmas, organize seus alunos e distribua atividades com apenas alguns cliques.',
+  },
+  {
+    icon: <ClipboardCopy className="w-10 h-10 mb-4 text-sky-400" />,
+    title: 'Relatórios Detalhados',
+    description: 'Gere relatórios completos sobre o desempenho individual e da turma para otimizar seu plano de ensino.',
+  },
+];
 
-export default function ForEducatorsPage() {
+export default function EducatorsPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-blue-700 via-blue-600 to-blue-500 text-white">
-      <div className="container mx-auto px-4 py-8">
-        <Navigation />
-        <div className="text-center max-w-4xl mx-auto pt-16">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif mb-6">
-            Capacite seus Alunos com a XEQUEMATH
-          </h1>
-          <p className="text-xl md:text-2xl mb-12 text-white/80">
-            Oferecemos ferramentas e recursos para educadores transformarem o ensino da matemática.
-          </p>
-          <Button size="lg" asChild className="bg-green-600 hover:bg-green-700 text-white text-xl font-medium px-12 py-4 rounded-full transition-colors">
-            <Link href="/request-invitation">Solicite um Convite</Link>
-          </Button>
+    <div className="container mx-auto">
+      {/* Hero Section */}
+      <section className="text-center py-20 md:py-32">
+        <h1 className="font-lora text-5xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-green-300">
+          Transforme sua Sala de Aula
+        </h1>
+        <p className="max-w-3xl mx-auto text-lg md:text-xl text-slate-300 mb-12">
+          A Xequemate oferece as ferramentas que você precisa para criar um ambiente de aprendizado dinâmico, engajador e eficaz.
+        </p>
+         <Link href="/contato-educadores">
+          <button className="bg-green-600 hover:bg-green-700 text-white font-bold text-lg px-10 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/50">
+            Fale com um Especialista
+          </button>
+        </Link>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-16">
+         <div className="text-center mb-16">
+            <h2 className="font-lora text-4xl font-bold text-white">Recursos para o Educador Moderno</h2>
         </div>
-      </div>
-    </main>
+        <div className="grid md:grid-cols-3 gap-8">
+          {educatorFeatures.map((feature, index) => (
+            <GlassCard key={index} className="p-8 flex flex-col items-center text-center">
+              {feature.icon}
+              <h3 className="font-bold text-2xl mb-3 text-white">{feature.title}</h3>
+              <p className="text-slate-300">{feature.description}</p>
+            </GlassCard>
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }
