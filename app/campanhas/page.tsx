@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from 'next/navigation';
 import { Button } from "@/components/ui/button";
 import AdminControls from "@/app/components/admin-controls";
 import Navigation from "@/app/components/navigation";
@@ -22,16 +21,6 @@ import {
 } from "lucide-react";
 
 export default function JogosPage() {
-  const router = useRouter();
-
-  // Protection Check
-  useEffect(() => {
-    const isLoggedIn = sessionStorage.getItem('isLoggedIn');
-    if (isLoggedIn !== 'true') {
-      router.push('/request-invitation');
-    }
-  }, [router]);
-
   const jogosEducacionais = [
     {
       id: 1,
