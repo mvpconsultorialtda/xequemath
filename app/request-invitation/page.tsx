@@ -1,129 +1,86 @@
-
 "use client";
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useRouter } from "next/navigation";
-import { requestInvitationSchema } from "@/app/schemas/request-invitation";
-import { useState } from "react";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-
-type FormData = z.infer<typeof requestInvitationSchema>;
+import { Mail, Loader2, CheckCircle } from "lucide-react";
 
 export default function RequestInvitationPage() {
-  const [submitMessage, setSubmitMessage] = useState("");
-  const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    watch,
-  } = useForm<FormData>({
-    resolver: zodResolver(requestInvitationSchema),
-  });
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
-  const email = watch("email");
-
-  const onSubmit = async (data: FormData) => {
-    try {
-      const response = await fetch("/api/request-invitation", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setSubmitMessage(result.message);
-        setTimeout(() => {
-          router.push("/");
-        }, 3000);
-      } else {
-        setSubmitMessage(result.message || "Ocorreu um erro ao enviar sua solicitação.");
-      }
-    } catch (error) {
-      console.error("Error submitting invitation request:", error);
-      setSubmitMessage("Ocorreu um erro ao enviar sua solicitação.");
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) {
+      setError("Por favor, insira um endereço de e-mail.");
+      return;
     }
+    // Simple email format validation
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setError("Por favor, insira um e-mail válido.");
+      return;
+    }
+    setError("");
+    setIsLoading(true);
+
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    setIsLoading(false);
+    setIsSubmitted(true);
   };
 
-  const isUnebEmail = email?.endsWith("@uneb.br");
-
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
-      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
-            Solicitar Convite
-          </h1>
-          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-            Para ter acesso à plataforma, por favor, solicite um convite.
-          </p>
-        </div>
-
-        {submitMessage ? (
-          <div className="p-4 text-center text-green-700 bg-green-100 rounded-md">
-            {submitMessage}
+    <main className="flex items-center justify-center min-h-screen bg-gradient-to-b from-blue-700 via-blue-600 to-blue-500 p-4">
+      <div className="w-full max-w-md mx-auto bg-white/10 backdrop-blur-sm rounded-xl shadow-2xl p-8 border border-white/20">
+        {isSubmitted ? (
+          <div className="text-center text-white">
+            <CheckCircle className="mx-auto h-16 w-16 text-green-400 mb-6" />
+            <h1 className="text-3xl font-serif font-bold mb-3">Convite Solicitado!</h1>
+            <p className="text-lg text-white/90">
+              Sua solicitação de convite foi recebida com sucesso. Fique de olho no seu e-mail, nossa equipe entrará em contato em breve.
+            </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <div>
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="seu-email@uneb.br"
-                {...register("email")}
-              />
-              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
+          <>
+            <div className="text-center mb-8">
+              <h1 className="text-4xl font-serif font-bold text-white">Acesso Restrito</h1>
+              <p className="text-lg text-white/80 mt-2">
+                Para acessar esta funcionalidade, por favor, solicite um convite.
+              </p>
             </div>
-
-            <Collapsible open={!isUnebEmail && !!email}>
-              <CollapsibleContent className="space-y-6">
-                <div>
-                  <Label htmlFor="justification">
-                    Justificativa para uso de e-mail pessoal
-                  </Label>
-                  <textarea
-                    id="justification"
-                    {...register("justification")}
-                    className="w-full px-3 py-2 text-gray-900 bg-transparent border rounded-md shadow-sm border-gray-300 focus:outline-none focus:ring-primary focus:border-primary dark:border-gray-600 dark:text-gray-100"
-                  />
-                  {errors.justification && <p className="text-red-500 text-sm mt-1">{errors.justification.message}</p>}
-                </div>
-                <div>
-                  <Label htmlFor="evidence">Anexar Evidência</Label>
-                  <Input
-                    id="evidence"
-                    type="file"
-                    {...register("evidence")}
-                  />
-                  {errors.evidence && <p className="text-red-500 text-sm mt-1">{errors.evidence.message}</p>}
-                </div>
-              </CollapsibleContent>
-            </Collapsible>
-
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Enviando..." : "Solicitar Convite"}
-            </Button>
-          </form>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="seu.email@exemplo.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="pl-10 h-12 bg-white/10 text-white placeholder:text-gray-400 border-white/30 focus:border-green-400 focus:ring-green-400"
+                  disabled={isLoading}
+                />
+              </div>
+               {error && <p className="text-sm text-red-400">{error}</p>}
+              <Button 
+                type="submit" 
+                className="w-full h-12 bg-green-600 hover:bg-green-700 text-white text-lg font-medium rounded-full transition-all duration-300 flex items-center justify-center"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <Loader2 className="h-6 w-6 animate-spin" />
+                ) : (
+                  "Solicitar Convite"
+                )}
+              </Button>
+            </form>
+          </>
         )}
       </div>
-    </div>
+    </main>
   );
 }

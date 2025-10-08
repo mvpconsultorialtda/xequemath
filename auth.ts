@@ -14,6 +14,7 @@ export const config = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        // This is a mock authorization. Replace with your actual user validation logic.
         if (credentials.email === "test@example.com" && credentials.password === "password") {
           return { id: "1", name: "Test User", email: "test@example.com" };
         } else {
@@ -25,11 +26,13 @@ export const config = {
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const isOnAssistantPage = nextUrl.pathname.startsWith('/assistente');
-      if (isOnAssistantPage) {
-        if (isLoggedIn) return true;
-        return false; // Redireciona usuários não autenticados para a página de login
-      } 
+      const isProtected = nextUrl.pathname.startsWith('/assistente') || nextUrl.pathname.startsWith('/campanhas/criar');
+
+      if (isProtected && !isLoggedIn) {
+        const invitationUrl = new URL("/request-invitation", nextUrl.origin);
+        return Response.redirect(invitationUrl);
+      }
+      
       return true;
     },
   },
