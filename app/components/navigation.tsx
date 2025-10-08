@@ -2,14 +2,26 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Bell, CastleIcon as ChessKnight } from "lucide-react";
-import { useSession, signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 
 export default function Navigation() {
   const pathname = usePathname();
-  const { data: session, status } = useSession();
+  const router = useRouter();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const loggedIn = sessionStorage.getItem("isLoggedIn") === "true";
+    setIsLoggedIn(loggedIn);
+  }, [pathname]);
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("isLoggedIn");
+    setIsLoggedIn(false);
+    router.push("/");
+  };
 
   return (
     <nav className="flex flex-col md:flex-row justify-between items-center mb-16">
@@ -37,10 +49,9 @@ export default function Navigation() {
         </div>
 
         <div className="flex items-center gap-4">
-          {status === "authenticated" ? (
+          {isLoggedIn ? (
             <>
-              <span className="text-white text-xl">Bem-vindo, {session.user?.name}</span>
-              <Button onClick={() => signOut()} variant="secondary">Logout</Button>
+              <Button onClick={handleLogout} variant="secondary">Logout</Button>
             </>
           ) : (
             <Link href="/login" className="text-white text-xl hover:underline">
