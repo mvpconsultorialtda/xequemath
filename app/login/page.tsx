@@ -9,7 +9,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { loginSchema } from "@/app/schemas/login";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -26,22 +25,16 @@ export default function LoginPage() {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = async (data: FormData) => {
-    try {
-      const result = await signIn("credentials", {
-        redirect: false,
-        email: data.email,
-        password: data.password,
-      });
-
-      if (result?.error) {
-        setErrorMessage("Email ou senha inválidos.");
-      } else {
-        router.push("/");
-      }
-    } catch (error) {
-      console.error("Login error:", error);
-      setErrorMessage("Ocorreu um erro durante o login.");
+  const onSubmit = (data: FormData) => {
+    // Simulate backend validation
+    if (data.email === "test@example.com" && data.password === "password") {
+      // On success, simulate a session by saving a flag in sessionStorage
+      sessionStorage.setItem('isLoggedIn', 'true');
+      // Redirect to the protected page
+      router.push("/assistente");
+    } else {
+      // On failure, show an error message
+      setErrorMessage("Email ou senha inválidos.");
     }
   };
 

@@ -1,10 +1,22 @@
+'use client';
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Sparkles, ImageIcon, BarChart, Wand2, MessageSquare, Lightbulb, CastleIcon as ChessKnight } from "lucide-react"
 
 export default function AssistenteIAPage() {
-  // Exemplos de recursos de IA
+  const router = useRouter();
+
+  useEffect(() => {
+    const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+    if (isLoggedIn !== 'true') {
+      router.push('/request-invitation');
+    }
+  }, [router]);
+
   const recursos = [
     {
       titulo: "Geração de Imagens",
@@ -141,126 +153,7 @@ export default function AssistenteIAPage() {
             </div>
           </div>
         </div>
-
-        {/* Planos */}
-        <div className="mb-16">
-          <h2 className="text-white text-3xl font-serif mb-8 text-center">Planos de Assistente IA</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="bg-white/10 backdrop-blur-sm border-none text-white">
-              <CardHeader>
-                <CardTitle className="text-2xl">Básico</CardTitle>
-                <CardDescription className="text-white/80">Para criadores iniciantes</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-4xl font-bold mb-6">Grátis</div>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-center">
-                    <span className="text-green-400 mr-2">✓</span>
-                    <span>5 gerações de imagens por mês</span>
-                  </li>
-                  <li className="flex items-center">
-                    <span className="text-green-400 mr-2">✓</span>
-                    <span>Sugestões básicas de mecânicas</span>
-                  </li>
-                  <li className="flex items-center">
-                    <span className="text-green-400 mr-2">✓</span>
-                    <span>Análise simples de balanceamento</span>
-                  </li>
-                </ul>
-              </CardContent>
-              <CardFooter>
-                <Button className="w-full bg-orange-600 hover:bg-orange-700">Começar Grátis</Button>
-              </CardFooter>
-            </Card>
-
-            <Card className="bg-gradient-to-b from-purple-900/80 to-purple-700/80 backdrop-blur-sm border-2 border-purple-400/50 text-white relative">
-              <div className="absolute top-0 right-0 bg-purple-500 text-white px-4 py-1 rounded-bl-lg rounded-tr-lg font-medium">
-                Popular
-              </div>
-              <CardHeader>
-                <CardTitle className="text-2xl">Profissional</CardTitle>
-                <CardDescription className="text-white/80">Para criadores dedicados</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-4xl font-bold mb-6">
-                  R$ 49,90<span className="text-lg font-normal">/mês</span>
-                </div>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-center">
-                    <span className="text-green-400 mr-2">✓</span>
-                    <span>50 gerações de imagens por mês</span>
-                  </li>
-                  <li className="flex items-center">
-                    <span className="text-green-400 mr-2">✓</span>
-                    <span>Sugestões avançadas de mecânicas</span>
-                  </li>
-                  <li className="flex items-center">
-                    <span className="text-green-400 mr-2">✓</span>
-                    <span>Análise detalhada de balanceamento</span>
-                  </li>
-                  <li className="flex items-center">
-                    <span className="text-green-400 mr-2">✓</span>
-                    <span>Geração de regras personalizadas</span>
-                  </li>
-                </ul>
-              </CardContent>
-              <CardFooter>
-                <Button className="w-full bg-purple-600 hover:bg-purple-700">Assinar Agora</Button>
-              </CardFooter>
-            </Card>
-
-            <Card className="bg-white/10 backdrop-blur-sm border-none text-white">
-              <CardHeader>
-                <CardTitle className="text-2xl">Estúdio</CardTitle>
-                <CardDescription className="text-white/80">Para equipes e empresas</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-4xl font-bold mb-6">
-                  R$ 149,90<span className="text-lg font-normal">/mês</span>
-                </div>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-center">
-                    <span className="text-green-400 mr-2">✓</span>
-                    <span>Gerações ilimitadas de imagens</span>
-                  </li>
-                  <li className="flex items-center">
-                    <span className="text-green-400 mr-2">✓</span>
-                    <span>Todas as funcionalidades profissionais</span>
-                  </li>
-                  <li className="flex items-center">
-                    <span className="text-green-400 mr-2">✓</span>
-                    <span>Simulações avançadas de jogabilidade</span>
-                  </li>
-                  <li className="flex items-center">
-                    <span className="text-green-400 mr-2">✓</span>
-                    <span>Acesso para até 5 membros da equipe</span>
-                  </li>
-                  <li className="flex items-center">
-                    <span className="text-green-400 mr-2">✓</span>
-                    <span>Suporte prioritário</span>
-                  </li>
-                </ul>
-              </CardContent>
-              <CardFooter>
-                <Button className="w-full bg-orange-600 hover:bg-orange-700">Contatar Vendas</Button>
-              </CardFooter>
-            </Card>
-          </div>
-        </div>
-
-        {/* Depoimentos */}
-        <div className="text-center max-w-2xl mx-auto bg-white/10 backdrop-blur-sm p-8 rounded-xl">
-          <h2 className="text-white text-3xl font-serif mb-6">O que Dizem Nossos Usuários</h2>
-          <blockquote className="text-white text-lg italic mb-6">
-            "O assistente de IA da XEQUEMATH revolucionou meu processo criativo. Consegui gerar protótipos visuais
-            rapidamente e recebi sugestões valiosas para equilibrar as mecânicas do meu jogo."
-          </blockquote>
-          <div className="font-medium">
-            <p className="text-white">Maria Silva</p>
-            <p className="text-white/70">Criadora de "Reinos Místicos"</p>
-          </div>
-        </div>
       </div>
     </main>
-  )
+  );
 }
