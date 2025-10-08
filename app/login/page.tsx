@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { loginSchema } from "@/app/schemas/login";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Link from 'next/link';
 
 type FormData = z.infer<typeof loginSchema>;
 
@@ -73,6 +74,12 @@ export default function LoginPage() {
               {isSubmitting ? "Entrando..." : "Login"}
             </Button>
           </form>
+          <div className="mt-4 text-center text-sm">
+            Não tem uma conta?{" "}
+            <Link href="/request-invitation" className="underline">
+              Solicite um convite
+            </Link>
+          </div>
         </CardContent>
       </Card>
     </div>
