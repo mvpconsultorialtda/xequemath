@@ -5,7 +5,8 @@ import { useRouter } from 'next/navigation';
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Sparkles, ImageIcon, BarChart, Wand2, MessageSquare, Lightbulb, CastleIcon as ChessKnight } from "lucide-react"
+import { Sparkles, ImageIcon, BarChart, Wand2, MessageSquare, Lightbulb } from "lucide-react"
+import Navigation from '@/app/components/navigation'; // Importa o componente padrão
 
 export default function AssistenteIAPage() {
   const router = useRouter();
@@ -48,30 +49,8 @@ export default function AssistenteIAPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-amber-800 via-amber-700 to-amber-600">
       <div className="container mx-auto px-4 py-8">
-        {/* Navigation */}
-        <nav className="flex flex-col md:flex-row justify-between items-center mb-16">
-          <Link href="/" className="text-white text-5xl font-serif font-bold flex items-center">
-            <ChessKnight className="h-10 w-10 mr-2" />
-            XEQUEMATH
-          </Link>
-          <div className="flex gap-6 md:gap-8 mt-4 md:mt-0">
-            <Link href="/campanhas" className="text-white text-xl hover:underline">
-              Campanhas
-            </Link>
-            <Link href="/loja" className="text-white text-xl hover:underline">
-              Loja
-            </Link>
-            <Link href="/lojas" className="text-white text-xl hover:underline">
-              Lojas
-            </Link>
-            <Link href="/servicos" className="text-white text-xl hover:underline">
-              Serviços
-            </Link>
-            <Link href="/assistente-ia" className="text-white text-xl hover:underline underline">
-              Assistente IA
-            </Link>
-          </div>
-        </nav>
+        {/* Navigation - Substituído pelo componente padrão */}
+        <Navigation />
 
         {/* Hero Content */}
         <div className="text-center max-w-4xl mx-auto mb-12">
