@@ -20,7 +20,7 @@ import {
   CircleDollarSign,
   LineChart,
 } from "lucide-react"
-import { Navigation } from "@/components/navigation"
+import Navigation from "@/components/navigation"
 
 // Adicione uma função para obter ícones com base na categoria do produto
 const getProductIcon = (categoria: string) => {
