@@ -40,7 +40,12 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="relative flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div className="absolute top-8 left-8">
+            <Link href="/" className="text-gray-600 dark:text-gray-300 hover:underline">
+                &larr; Voltar para a página inicial
+            </Link>
+        </div>
       <Card className="w-full max-w-sm">
         <CardHeader className="space-y-1 text-center">
           <CardTitle className="text-2xl font-bold">Login</CardTitle>
