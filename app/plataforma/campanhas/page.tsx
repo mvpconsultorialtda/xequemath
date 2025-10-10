@@ -2,38 +2,35 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
 import FeatureLockOverlay from '../../components/feature-lock-overlay';
 import {
   PlusCircle,
   Target,
-  Users,
-  TrendingUp
 } from 'lucide-react';
 import CampanhaCard from '../../components/campanha-card';
 
 const campanhas = [
     {
         id: 1,
-        title: "Gamificando a Tabuada",
-        author: "Escola Inovadora",
-        description: "Uma campanha para desenvolver um jogo que torna o aprendizado da multiplicação uma aventura interativa.",
-        progress: 75,
-        goal: "R$ 20.000",
-        raised: "R$ 15.000",
-        daysLeft: 12,
-        category: "Ensino Fundamental"
+        titulo: "Gamificando a Tabuada",
+        criador: "Escola Inovadora",
+        descricao: "Uma campanha para desenvolver um jogo que torna o aprendizado da multiplicação uma aventura interativa.",
+        percentual: 75,
+        meta: "R$ 20.000",
+        arrecadado: "R$ 15.000",
+        diasRestantes: 12,
+        categoria: "Ensino Fundamental"
     },
     {
         id: 2,
-        title: "Geometria no Metaverso",
-        author: "Prof. Dr. Ricardo Neves",
-        description: "Explorar conceitos de geometria espacial em um ambiente de realidade virtual imersivo e colaborativo.",
-        progress: 40,
-        goal: "R$ 50.000",
-        raised: "R$ 20.000",
-        daysLeft: 45,
-        category: "Ensino Médio e Superior"
+        titulo: "Geometria no Metaverso",
+        criador: "Prof. Dr. Ricardo Neves",
+        descricao: "Explorar conceitos de geometria espacial em um ambiente de realidade virtual imersivo e colaborativo.",
+        percentual: 40,
+        meta: "R$ 50.000",
+        arrecadado: "R$ 20.000",
+        diasRestantes: 45,
+        categoria: "Ensino Médio e Superior"
     },
 ];
 
