@@ -14,11 +14,6 @@ export default function LoginPage() {
     console.log(`Logging in with: ${email}`);
   };
 
-  const handleGoogleLogin = () => {
-    // Handle Google login logic
-    console.log('Initiating Google login');
-  };
-
   return (
     <div className="container mx-auto flex items-center justify-center min-h-[calc(100vh-200px)]">
       <GlassCard className="max-w-md w-full p-8">
@@ -64,23 +59,6 @@ export default function LoginPage() {
             </button>
           </div>
         </form>
-        <div className="relative my-8">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-slate-700" />
-          </div>
-          <div className="relative flex justify-center text-sm">
-            <span className="bg-slate-800/80 px-2 text-slate-400 backdrop-blur-sm">OU</span>
-          </div>
-        </div>
-        <div>
-          <button
-            onClick={handleGoogleLogin}
-            className="w-full bg-slate-700/50 hover:bg-slate-700 text-white font-medium py-3 rounded-full transition-colors flex items-center justify-center gap-3"
-          >
-            {/* SVG for Google Icon would go here */}
-            <span>Login com Google</span>
-          </button>
-        </div>
       </GlassCard>
     </div>
   );
